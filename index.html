@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Form Template</title>
+     <title>Get Even</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/forms.css">
-<style>
-  #container{
-    border-radius: 5px;
-    min-height: 40px;
-    border: 1px solid black;
-    width: 50%;
-    margin: auto;
-    font-size: x-large;
-  }
-</style>
-</head>
+  <style>
+    #container{
+      border-radius: 5px;
+      min-height: 40px;
+      border:1px solid black;
+      width:50%;
+      margin:auto;
+      font-size:x-large;
+    }
+  </style>
+ </head>
  <body>
      <header>
      <h1 class="page-header">Get Even</h1>
         <nav class="topnav" id="myTopnav">
             <a href="index.html" class="active">Home</a>
-            <a href="https://rhuyu.github.io/portal/">Back to Portal</a>
+            <a href="#">Link</a>
+            <a href="#">Link</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </nav>
      </header>
      
    <main class="wrapper">
-  <p> Welcome to a page where I demonstrate how to use gain user input from a form and able to process that data and show the user for confirmation. Included with a "Clear" button that returns to the form submission.</p>
-    <h2 class="subheader"></h2>
-    <div id="output">
-      <form method="get" action="" class="main-form">
-        <div>
-          <label for="input">Input</label><br>
-          <input type="text" name="input" id="input" placeholder="Input" required autofocus>
-        </div>
-        <div>
-          <input type="submit" id="submit">
-        </div>
-      </form>
-    </div>
-    <footer>
+ 
+    <h2 class="subheader">Place form code below:</h2>
+    <div id="output"></div>
+    <form method="get" action="" class="main-form">
+      <div>
+        <label for="input">Input</label><br>
+        <input type="text" name="input" id="input" placeholder="Input" required autofocus>  
+      </div>
+      <div>
+        <input type="submit" id="submit">
+      </div>
+    </form>
+      <p>This website allow you to input a number and output if the number is even or odd!</p>
+      <br>
       <p><small>&copy; 2021-<span id="this-year"></span> by 
           Randy Huynh, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
@@ -50,33 +51,43 @@
      </p>
     </footer>
   </main>
-  <script src="js/main.js"></script>   
+  <script src="js/main.js"></script> 
   <script>
-    const queryString = window.location.search;
-    
-    const urlParams = new URLSearchParams(queryString);
 
-    if(queryString.length > 0){//form submitted!
-      let myOutput = `<div id="container">`;//will store data for display
-        //alert("Data submitted!");
-        if(urlParams.has("input")){
-            //alert(urlParams.get("input"));
- 
- 
-            let myInput = urlParams.get("input");
- 
- 
- 
- 
-            myOutput += `<p>You input ${myInput}</p>`;
-        }
-        myOutput += `<p><a href="index.html">CLEAR</a></p>`; 
-      myOutput += `</div>`;
-    
-      document.querySelector("#output").innerHTML = myOutput;
+function getEven(num){
+  if(num % 2 ==0){//even
+    return true;
+  }else{//odd
+    return false;
+  }
+}
+
+
+const queryString = window.location.search;
+
+const urlParams = new URLSearchParams(queryString);
+
+if(queryString.length > 0){//form submitted!
+     let myOutput = `<div id="container">`;//will store data for display
+       //alert("Data submitted!");
+       if(urlParams.has("input")){
+           //alert(urlParams.get("input"));
+
+           let myInput = urlParams.get("input");
+
+           if(getEven(myInput)){//even output
+            myOutput += `<p>You input <b>${myInput}</b> and the number is even</p>`;
+          }else{//odd output
+            myOutput += `<p>You input <b>${myInput}</b> and the number is odd</p>`;
+          }
+  
+       }
+       myOutput += `<p><a href="index.html">CLEAR</a></p>`; 
+     myOutput += `</div>`;
+   
+     document.querySelector("#output").innerHTML = myOutput;
     }
- 
-    
-  </script>
+
+  </script>  
  </body>
 </html>
